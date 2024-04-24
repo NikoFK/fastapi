@@ -220,9 +220,11 @@ def delete_mhs(nim: str):
 
     return {"status": "ok"}
 
+
 # FastAPI Post and Get File Image
 from fastapi import File, UploadFile
 from fastapi.responses import FileResponse
+
 
 # Upload Image
 @app.post("/uploadImage")
@@ -237,13 +239,15 @@ def upload(file: UploadFile = File(...)):
         return {"message": "Error upload file"}
     finally:
         file.file.close()
-    return {"message" : "Upload berhasil: {file.filename}"}
+    return {"message": "Upload berhasil: {file.filename}"}
+
 
 # ambil image berdasarkan nama file
 
+
 @app.get("/getimage/{nama_file}")
 async def getImage(nama_file: str):
-  return FileResponse("./data_file/" + nama_file)
+    return FileResponse("./data_file/" + nama_file)
 
 
 def read_root():
